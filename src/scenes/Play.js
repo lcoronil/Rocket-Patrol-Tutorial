@@ -5,7 +5,7 @@ class Play extends Phaser.Scene {
 
     preload() {
         //load images/tile sprites
-        this.load.image('rocket', './assets/rocket.png');
+        this.load.image('cone', './assets/cone.png');
         this.load.image('spaceship', './assets/spaceship.png');
         this.load.image('starfield', './assets/starfield.png');
 
@@ -20,17 +20,11 @@ class Play extends Phaser.Scene {
 
     create() {
 
-        // //placing background images
-        // const width = this.scale.width 
-        // const height = this.scale.height
-
-        // this.add.image(width * 0.5, height * 0.5, 'sky')
-
         //place tile sprite
         this.sky = this.add.tileSprite(0, 0, 640, 480, 'sky').setOrigin(0, 0);
+        this.mountains = this.add.tileSprite(0, 0, 640, 480, 'mountains').setOrigin(0, 0);
+        this.floor = this.add.tileSprite(0, 0, 640, 480, 'floor').setOrigin(0, 0);
         
-        // green UI background
-        this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
         // white borders
         this.add.rectangle(0, 0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
         this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
@@ -39,7 +33,7 @@ class Play extends Phaser.Scene {
 
         //add rocket (p1)
         this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding,
-        'rocket').setOrigin(0.5, 0);      
+        'cone').setOrigin(0.5, 0.5);      
 
         // add spaceships (x3)
         this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'spaceship', 0, 30).setOrigin(0, 0);
@@ -103,7 +97,9 @@ class Play extends Phaser.Scene {
             this.scene.start("menuScene");
         }
 
-        this.sky.tilePositionX -= 4;  // update the tile sprite
+        this.sky.tilePositionX -= 1;
+        this.mountains.tilePositionX -= 2;
+        this.floor.tilePositionX -= 4;  // update the tile sprite
         
         if(!this.gameOver) {
             this.p1Rocket.update();             // update p1      
