@@ -44,7 +44,7 @@ class Play extends Phaser.Scene {
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'icecream1', 0, 10).setOrigin(0, 0);   
 
          // define keys
-         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+         Spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
          keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
          keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
          keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);  
