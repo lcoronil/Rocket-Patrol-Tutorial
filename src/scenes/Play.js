@@ -35,8 +35,8 @@ class Play extends Phaser.Scene {
         //this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
 
         //add rocket (p1)
-        this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding,
-        'cone').setOrigin(0.5, 0);      
+        this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - 69,
+        'cone').setOrigin(0, 0);      
 
         // add spaceships (x3)
         this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'icecream3', 0, 30).setOrigin(0, 0);
@@ -92,11 +92,11 @@ class Play extends Phaser.Scene {
     update() {
 
         // check key input for restart / menu
-        if(this.gameOVer && Phaser.Input.Keyboard.JustDown(keyR)) {
+        if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
             this.scene.restart();
         }
 
-        if(this.gameOVer && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
+        if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
             this.scene.start("menuScene");
         }
 
@@ -135,9 +135,9 @@ checkCollision(rocket, ship) {
         rocket.x + rocket.width > ship.x &&
         rocket.y < ship.y + ship.height &&
         rocket.height + rocket.y > ship.y) {
-            return true;
+            return true; // collsion happened
     } else {
-            return false;
+            return false;// collision did not happen
     }
 }
 

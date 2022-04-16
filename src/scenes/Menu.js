@@ -8,13 +8,19 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx_select', './assets/blip_select12.wav');
         this.load.audio('sfx_explosion', './assets/explosion38.wav');
         this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
+
+        //load menu images
+        this.load.image('sky', './assets/sky.png');
     }
 
     create() {
 
+        // place sky bg
+        this.sky = this.add.tileSprite(0, 0, 640, 480, 'sky').setOrigin(0, 0);
+
         // meny text config
         let menuConfig = {
-            fontFamily: 'Courier',
+            fontFamily: 'Fredoke One',
             fontSize: '28px',
             backgroundColor: '#F3B141',
             color: '#843605',
@@ -40,6 +46,11 @@ class Menu extends Phaser.Scene {
 
 
     update() {
+
+
+        // sky bg moving
+        this.sky.tilePositionX -= 1;  
+
         if (Phaser.Input.Keyboard.JustDown(keyLEFT)) {
           // easy mode
           game.settings = {
@@ -53,7 +64,7 @@ class Menu extends Phaser.Scene {
           // hard mode
           game.settings = {
             spaceshipSpeed: 4,
-            gameTimer: 45000    
+            gameTimer: 4500    
           }
           this.sound.play('sfx_select');
           this.scene.start('playScene');    
