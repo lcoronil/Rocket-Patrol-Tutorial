@@ -12,6 +12,8 @@ class Play extends Phaser.Scene {
         this.load.image('icecream2', './assets/icecream2.png');
         this.load.image('icecream3', './assets/icecream3.png');
 
+
+
         //load background art
         this.load.image('sky', './assets/sky.png');
         this.load.image('mountains', './assets/mountains.png');
@@ -27,7 +29,6 @@ class Play extends Phaser.Scene {
         this.sky = this.add.tileSprite(0, 0, 640, 480, 'sky').setOrigin(0, 0);
         this.mountains = this.add.tileSprite(0, 0, 640, 480, 'mountains').setOrigin(0, 0);
         this.floor = this.add.tileSprite(0, 0, 640, 480, 'floor').setOrigin(0, 0);
-
     
         // white borders
         //this.add.rectangle(0, 0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
