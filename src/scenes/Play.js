@@ -27,7 +27,8 @@ class Play extends Phaser.Scene {
         this.sky = this.add.tileSprite(0, 0, 640, 480, 'sky').setOrigin(0, 0);
         this.mountains = this.add.tileSprite(0, 0, 640, 480, 'mountains').setOrigin(0, 0);
         this.floor = this.add.tileSprite(0, 0, 640, 480, 'floor').setOrigin(0, 0);
-        
+
+    
         // white borders
         //this.add.rectangle(0, 0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
         //this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
@@ -61,30 +62,33 @@ class Play extends Phaser.Scene {
 
          //display score
          let scoreConfig = {
-             fontFamily: 'Courier',
+             fontFamily: 'Ice Cream Grande',
              fontSize: '28px',
-             backgroundColor: '#F3B141',
-             color: '#843605',
-             align: 'right',
-             passing: {
-                 top: 5,
-                 bottom: 5,
-             },
-             fixedWidth: 200
+             color: '#AB73ED',
+             stroke: '#895EDA',
+             strokeThickness: 6,
+             align: 'left'
          }
+        
          this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
     
          // GAME OVER flag
          this.gameOver = false; 
 
          // 60-second play clock
+
          scoreConfig.fixedWidth = 0;
-         this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
+
+         this.timerText = this.add.text(game.config.width/2, game.config.height/2, "").setColor("#AB73ED");
+
+         this.clock = this.time.delayedCall(game.settings.gameTimer, () => {             
              this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
              this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu',
              scoreConfig).setOrigin(0.5);
              this.gameOver = true;
          }, null, this);
+
+         this.timerText.setText(game.settings.gameTimer);
          
     }
 
@@ -156,6 +160,6 @@ shipExplode(ship) {
     this.p1Score += ship.points;
     this.scoreLeft.text = this.p1Score; 
     
-    this.sound.play('sfx_explosion');
+    this.sound.play('sparkle');
   }
 }
