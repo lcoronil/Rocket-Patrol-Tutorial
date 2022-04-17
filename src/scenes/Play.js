@@ -41,9 +41,11 @@ class Play extends Phaser.Scene {
         'cone').setOrigin(0, 0);      
 
         // add spaceships (x3)
-        this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'icecream3', 0, 30).setOrigin(0, 0);
-        this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'icecream2', 0, 20).setOrigin(0, 0);
-        this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'icecream1', 0, 10).setOrigin(0, 0);   
+        this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'icecream3', 0, 30, game.settings.spaceshipSpeed+ 0.5).setOrigin(0, 0);
+        this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'icecream2', 0, 20,game.settings.spaceshipSpeed+0.25).setOrigin(0, 0);
+        this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'icecream1', 0, 10,game.settings.spaceshipSpeed).setOrigin(0, 0);   
+        this.ship04 = new Spaceship(this, game.config.width + borderUISize * 9, borderUISize * 2.5, 'cone', 0, 100,game.settings.spaceshipSpeed + 2).setOrigin(0, 0);   
+
 
          // define keys
          Spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
@@ -93,7 +95,6 @@ class Play extends Phaser.Scene {
 
          //initialize timer
          this.p1Timer = Math.ceil(this.clock.getRemainingSeconds());
-         console.log(this.p1Timer);
 
          //display timer
          this.timerRight = this.add.text(game.config.width - borderPadding*13, borderUISize + borderPadding*2, this.p1Timer, scoreConfig);
@@ -127,20 +128,25 @@ class Play extends Phaser.Scene {
             this.ship01.update();               // update spaceship(x3)
             this.ship02.update();
             this.ship03.update();
+            this.ship04.update();
         }
 
 
         // check collisions
+        if(this.checkCollision(this.p1Rocket, this.ship04)) {
+            //this.p1Rocket.reset();
+            this.shipExplode(this.ship04);
+        }
         if(this.checkCollision(this.p1Rocket, this.ship03)) {
-            this.p1Rocket.reset();
+            //this.p1Rocket.reset();
             this.shipExplode(this.ship03);
         }
         if (this.checkCollision(this.p1Rocket, this.ship02)) {
-            this.p1Rocket.reset();
+            //this.p1Rocket.reset();
             this.shipExplode(this.ship02);
         }
         if (this.checkCollision(this.p1Rocket, this.ship01)) {
-            this.p1Rocket.reset();
+            //this.p1Rocket.reset();
             this.shipExplode(this.ship01);
         }
 
@@ -161,13 +167,15 @@ checkCollision(rocket, ship) {
 
 shipExplode(ship) {
     // temporarily hide ship
-    ship.alpha = 0;                         
+    //ship.alpha = 0;                         
     // create explosion sprite at ship's position
-    let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0, 0);
+    let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0, 0);    
+    ship.reset();
+
     boom.anims.play('confetti');             // play explode animation
     boom.on('animationcomplete', () => {    // callback after anim completes
-        ship.reset();                         // reset ship position
-        ship.alpha = 1;                       // make ship visible again
+        //ship.reset();                         // reset ship position
+        //ship.alpha = 1;                       // make ship visible again
         boom.destroy();                       // remove explosion sprite
     });
     // score add and repaint
