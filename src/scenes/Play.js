@@ -89,11 +89,21 @@ class Play extends Phaser.Scene {
          }, null, this);
 
          this.timerText.setText(game.settings.gameTimer);
+
+         //initialize timer
+         this.p1Timer = 60;
+
+         //display timer
+         this.timerRight = this.add.text(game.config.width - borderPadding*13, borderUISize + borderPadding*2, this.p1Timer, scoreConfig);
          
     }
 
 
     update() {
+
+        this.p1Timer = 60 - this.time.now/1000;
+        this.timerRight.text = this.p1Timer;
+
 
         // check key input for restart / menu
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
