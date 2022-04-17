@@ -20,7 +20,7 @@ class Play extends Phaser.Scene {
         this.load.image('floor', './assets/floor.png');
 
         // load spritesheet
-        this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
+        this.load.spritesheet('confetti', './assets/confetti.png', {frameWidth: 75, frameHeight: 70, startFrame: 0, endFrame: 8});
     }
 
     create() {
@@ -53,8 +53,8 @@ class Play extends Phaser.Scene {
 
          //animation config
          this.anims.create({
-             key: 'explode',
-             frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 9, first: 0}),
+             key: 'confetti',
+             frames: this.anims.generateFrameNumbers('confetti', { start: 0, end: 8, first: 0}),
              frameRate: 30
          });
 
@@ -89,10 +89,11 @@ class Play extends Phaser.Scene {
              this.gameOver = true;
          }, null, this);
 
-         this.timerText.setText(game.settings.gameTimer);
+         //this.timerText.setText(game.settings.gameTimer);
 
          //initialize timer
-         this.p1Timer = 60;
+         this.p1Timer = Math.floor(this.clock.getRemainingSeconds());
+         console.log(this.p1Timer);
 
          //display timer
          this.timerRight = this.add.text(game.config.width - borderPadding*13, borderUISize + borderPadding*2, this.p1Timer, scoreConfig);
@@ -102,7 +103,9 @@ class Play extends Phaser.Scene {
 
     update() {
 
-        this.p1Timer = 60 - this.time.now/1000;
+        this.p1Timer = Math.floor(this.clock.getRemainingSeconds());
+        //this.p1Timer = this.p1Timer - (this.time.now / 1000);
+        //console.log(this.p1Timer);
         this.timerRight.text = this.p1Timer;
 
 
@@ -161,7 +164,7 @@ shipExplode(ship) {
     ship.alpha = 0;                         
     // create explosion sprite at ship's position
     let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0, 0);
-    boom.anims.play('explode');             // play explode animation
+    boom.anims.play('confetti');             // play explode animation
     boom.on('animationcomplete', () => {    // callback after anim completes
         ship.reset();                         // reset ship position
         ship.alpha = 1;                       // make ship visible again
