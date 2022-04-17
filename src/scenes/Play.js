@@ -92,7 +92,7 @@ class Play extends Phaser.Scene {
          //this.timerText.setText(game.settings.gameTimer);
 
          //initialize timer
-         this.p1Timer = Math.floor(this.clock.getRemainingSeconds());
+         this.p1Timer = Math.ceil(this.clock.getRemainingSeconds());
          console.log(this.p1Timer);
 
          //display timer
@@ -103,7 +103,7 @@ class Play extends Phaser.Scene {
 
     update() {
 
-        this.p1Timer = Math.floor(this.clock.getRemainingSeconds());
+        this.p1Timer = Math.ceil(this.clock.getRemainingSeconds());
         //this.p1Timer = this.p1Timer - (this.time.now / 1000);
         //console.log(this.p1Timer);
         this.timerRight.text = this.p1Timer;
