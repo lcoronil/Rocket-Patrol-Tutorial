@@ -6,8 +6,8 @@ class Menu extends Phaser.Scene {
     preload() {
         // load audio
         this.load.audio('sfx_select', './assets/blip_select12.wav');
+        this.load.audio('Kids_Cheering', './assets/Kids_Cheering.mp3');
         this.load.audio('sparkle', './assets/sparkle.wav');
-        this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
 
         //load menu images
         this.load.image('sky', './assets/sky.png');
