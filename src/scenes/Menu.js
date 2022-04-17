@@ -19,11 +19,13 @@ class Menu extends Phaser.Scene {
         // place sky bg
         this.sky = this.add.tileSprite(0, 0, 640, 480, 'sky').setOrigin(0, 0);
 
-        // meny text config
+        // menu text config
         let menuConfig = {
             fontFamily: 'Ice Cream Grande',
             fontSize: '25px',
             color: '#AB73ED',
+            stroke: '#895EDA',
+            strokeThickness: 5,
             align: 'right',
             padding: {
                 top: 5,
