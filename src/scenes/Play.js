@@ -74,6 +74,8 @@ class Play extends Phaser.Scene {
          }
         
          this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
+         //score text
+         this.add.text(borderPadding, borderPadding, 'Score', scoreConfig);
     
          // GAME OVER flag
          this.gameOver = false; 
@@ -83,6 +85,8 @@ class Play extends Phaser.Scene {
          scoreConfig.fixedWidth = 0;
 
          this.timerText = this.add.text(game.config.width/2, game.config.height/2, "").setColor("#AB73ED");
+         //timer text
+         this.add.text(game.config.width - borderPadding*12, borderPadding, 'Timer', scoreConfig);
 
          this.clock = this.time.delayedCall(game.settings.gameTimer, () => {             
              this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
@@ -97,7 +101,7 @@ class Play extends Phaser.Scene {
          this.p1Timer = Math.ceil(this.clock.getRemainingSeconds());
 
          //display timer
-         this.timerRight = this.add.text(game.config.width - borderPadding*13, borderUISize + borderPadding*2, this.p1Timer, scoreConfig);
+         this.timerRight = this.add.text(game.config.width - borderPadding*10, borderUISize + borderPadding*2, this.p1Timer, scoreConfig);
          
     }
 
@@ -134,19 +138,19 @@ class Play extends Phaser.Scene {
 
         // check collisions
         if(this.checkCollision(this.p1Rocket, this.ship04)) {
-            //this.p1Rocket.reset();
+            this.p1Rocket.reset();
             this.shipExplode(this.ship04);
         }
         if(this.checkCollision(this.p1Rocket, this.ship03)) {
-            //this.p1Rocket.reset();
+            this.p1Rocket.reset();
             this.shipExplode(this.ship03);
         }
         if (this.checkCollision(this.p1Rocket, this.ship02)) {
-            //this.p1Rocket.reset();
+            this.p1Rocket.reset();
             this.shipExplode(this.ship02);
         }
         if (this.checkCollision(this.p1Rocket, this.ship01)) {
-            //this.p1Rocket.reset();
+            this.p1Rocket.reset();
             this.shipExplode(this.ship01);
         }
 
