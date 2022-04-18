@@ -11,6 +11,7 @@ class Play extends Phaser.Scene {
         this.load.image('icecream1', './assets/icecream1.png');
         this.load.image('icecream2', './assets/icecream2.png');
         this.load.image('icecream3', './assets/icecream3.png');
+        this.load.image('chocolate', './assets/chocolate.png');
 
 
 
@@ -44,7 +45,10 @@ class Play extends Phaser.Scene {
         this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'icecream3', 0, 30, game.settings.spaceshipSpeed+ 0.5).setOrigin(0, 0);
         this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'icecream2', 0, 20,game.settings.spaceshipSpeed+0.25).setOrigin(0, 0);
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'icecream1', 0, 10,game.settings.spaceshipSpeed).setOrigin(0, 0);   
-        this.ship04 = new Spaceship(this, game.config.width + borderUISize * 9, borderUISize * 2.5, 'cone', 0, 100,game.settings.spaceshipSpeed + 2).setOrigin(0, 0);   
+        this.ship04 = new Spaceship(this, game.config.width + borderUISize * 9, borderUISize * 2.5, 'chocolate', 0, 100,game.settings.spaceshipSpeed + 2).setOrigin(0, 0);   
+
+        //scale ship 04
+        this.ship04.setScale(.8)
 
 
          // define keys
@@ -185,7 +189,12 @@ shipExplode(ship) {
     // score add and repaint
     this.p1Score += ship.points;
     this.scoreLeft.text = this.p1Score; 
-    
-    this.sound.play('Kids_Cheering');
+
+    if(ship.texture.key=='chocolate'){
+        this.sound.play('Kids_Cheering'); 
+    } 
+    else{
+        this.sound.play('explosion');
+    }
   }
 }

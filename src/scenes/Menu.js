@@ -8,6 +8,7 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx_select', './assets/blip_select12.wav');
         this.load.audio('Kids_Cheering', './assets/Kids_Cheering.mp3');
         this.load.audio('sparkle', './assets/sparkle.wav');
+        this.load.audio('explosion', './assets/explosion.wav');
 
         //load menu images
         this.load.image('sky', './assets/sky.png');
@@ -63,16 +64,16 @@ class Menu extends Phaser.Scene {
             spaceshipSpeed: 3,
             gameTimer: 60000    
           }
-          this.sound.play('sfx_select');
+          this.sound.play('sparkle');
           this.scene.start('playScene');    
         }
         if (Phaser.Input.Keyboard.JustDown(keyRIGHT)) {
           // hard mode
           game.settings = {
             spaceshipSpeed: 4,
-            gameTimer: 5000    
+            gameTimer: 45000    
           }
-          this.sound.play('sfx_select');
+          this.sound.play('sparkle');
           this.scene.start('playScene');    
         }
       }
