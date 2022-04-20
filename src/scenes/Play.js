@@ -124,6 +124,7 @@ class Play extends Phaser.Scene {
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
             this.scene.start("menuScene");
         }
@@ -132,6 +133,8 @@ class Play extends Phaser.Scene {
         this.mountains.tilePositionX -= 2;
         this.floor.tilePositionX -= 4;  // update the tile sprite
 =======
+=======
+>>>>>>> parent of f75df79 (finalizing changes to move speed, changing things for easy and hard mode)
         this.starfield.tilePositionX -= 4;  // update the tile sprite
 >>>>>>> parent of f75df79 (finalizing changes to move speed, changing things for easy and hard mode)
         

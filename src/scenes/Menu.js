@@ -65,8 +65,13 @@ class Menu extends Phaser.Scene {
             gameTimer: 60000    
           }
 <<<<<<< HEAD
+<<<<<<< HEAD
           this.sound.play('sparkle');
           this.scene.start('playScene');    
+=======
+          this.sound.play('sfx_select');
+          this.scene.start("playScene");    
+>>>>>>> parent of f75df79 (finalizing changes to move speed, changing things for easy and hard mode)
 =======
           this.sound.play('sfx_select');
           this.scene.start("playScene");    
@@ -79,8 +84,13 @@ class Menu extends Phaser.Scene {
             gameTimer: 45000    
           }
 <<<<<<< HEAD
+<<<<<<< HEAD
           this.sound.play('sparkle');
           this.scene.start('playScene');    
+=======
+          this.sound.play('sfx_select');
+          this.scene.start("playScene");    
+>>>>>>> parent of f75df79 (finalizing changes to move speed, changing things for easy and hard mode)
 =======
           this.sound.play('sfx_select');
           this.scene.start("playScene");    
