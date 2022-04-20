@@ -94,7 +94,7 @@ class Play extends Phaser.Scene {
 
          this.clock = this.time.delayedCall(game.settings.gameTimer, () => {             
              this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
-             this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu',
+             this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart',
              scoreConfig).setOrigin(0.5);
              this.gameOver = true;
          }, null, this);
@@ -123,6 +123,7 @@ class Play extends Phaser.Scene {
             this.scene.restart();
         }
 
+<<<<<<< HEAD
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
             this.scene.start("menuScene");
         }
@@ -130,6 +131,9 @@ class Play extends Phaser.Scene {
         this.sky.tilePositionX -= 1;
         this.mountains.tilePositionX -= 2;
         this.floor.tilePositionX -= 4;  // update the tile sprite
+=======
+        this.starfield.tilePositionX -= 4;  // update the tile sprite
+>>>>>>> parent of f75df79 (finalizing changes to move speed, changing things for easy and hard mode)
         
         if(!this.gameOver) {
             this.p1Rocket.update();             // update p1      

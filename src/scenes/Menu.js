@@ -51,7 +51,7 @@ class Menu extends Phaser.Scene {
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
     }
 
-
+    
     update() {
 
 
@@ -59,22 +59,32 @@ class Menu extends Phaser.Scene {
         this.sky.tilePositionX -= 1;  
 
         if (Phaser.Input.Keyboard.JustDown(keyLEFT)) {
-          // easy mode
+          // Novice mode
           game.settings = {
             spaceshipSpeed: 3,
             gameTimer: 60000    
           }
+<<<<<<< HEAD
           this.sound.play('sparkle');
           this.scene.start('playScene');    
+=======
+          this.sound.play('sfx_select');
+          this.scene.start("playScene");    
+>>>>>>> parent of f75df79 (finalizing changes to move speed, changing things for easy and hard mode)
         }
         if (Phaser.Input.Keyboard.JustDown(keyRIGHT)) {
-          // hard mode
+          // Expert mode
           game.settings = {
             spaceshipSpeed: 4,
             gameTimer: 45000    
           }
+<<<<<<< HEAD
           this.sound.play('sparkle');
           this.scene.start('playScene');    
+=======
+          this.sound.play('sfx_select');
+          this.scene.start("playScene");    
+>>>>>>> parent of f75df79 (finalizing changes to move speed, changing things for easy and hard mode)
         }
       }
 }
